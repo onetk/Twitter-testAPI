@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Twitter API</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <h2 class="title word">Twitter Trend API</h2>
+
+
+
+  <%# ================================= 検索ボックスの処理 ================================= %>
+
+  <form class="search-form" action="/search" method="POST">
+    <input type="text" name="keyword" placeholder="Search" class="search-text">
+    <button type="submit" class="search-button">
+      <img src="search.png" class="search-icon">
+    </button>
+  </form>
+
+
+  <%# ================================ トレンドを表示する部分 ================================ %>
+
+  <div>
+    <%# トレンドの検索結果が保存されている @target_trendsがからでなければ 実行%>
+    <% if @target_trends %>
+      <%# 良い感じにキーワードの表示%>
+      <h2 class="keyword word"><%= @keyword %>  <span style="font-size:12px;"> Powered By Twitter</span></h2>
+
+      <%# 良い感じに @target_trends のリストからトレンド名を１つずつの表示%>
+      <% @target_trends[0]['trends'].each do |trend| %>
+        <div style='text-align:center;'> <%= trend['name'] %> </div>
+      <% end %>
+
+    <% end %>
+  </div>
+
+
+
+</body>
+</html>
