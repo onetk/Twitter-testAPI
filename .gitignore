@@ -56,3 +56,5 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 
 .DS_Store
+.env
+.Gemfile.lock

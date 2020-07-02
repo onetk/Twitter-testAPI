@@ -27,8 +27,6 @@ before do
   # 読み込んだファイル .env の内容から、API に必要な情報を変数に格納
   consumer_key        = ENV["twi_consumer_key"]
   consumer_secret     = ENV["twi_consumer_secret"]
-  access_token        = ENV["twi_access_token"]
-  access_token_secret = ENV["twi_token_secret"]
 
   consumer = OAuth::Consumer.new(
     consumer_key,
@@ -38,14 +36,9 @@ before do
       :scheme => :header
     }
   )
-  token_hash = {
-    :access_token        => access_token,
-    :access_token_secret => access_token_secret
-  }
 
   # Twitterへのリクエストトークン作成
-  @client = OAuth::AccessToken.from_hash(consumer, token_hash)
-
+  @client = OAuth::AccessToken.from_hash(consumer, { :access_token => '', :access_token_secret => '' })
 
   # Twitter API を使ってトレンドを取得可能な場所のリストを取ってくる。 形式をjsonに変えて @location_list に保存
   response_available = @client.request(:get, 'https://api.twitter.com/1.1/trends/available.json')

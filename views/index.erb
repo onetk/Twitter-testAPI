@@ -24,16 +24,15 @@
   <%# ================================ トレンドを表示する部分 ================================ %>
 
   <div>
-    <%# トレンドの検索結果が保存されている @target_trendsがからでなければ 実行%>
+    <!-- トレンドの検索結果が保存されている @target_trendsがからでなければ 実行 -->
     <% if @target_trends %>
-      <%# 良い感じにキーワードの表示%>
+      <!-- 良い感じにキーワードの表示 -->
       <h2 class="keyword word"><%= @keyword %>  <span style="font-size:12px;"> Powered By Twitter</span></h2>
 
-      <%# 良い感じに @target_trends のリストからトレンド名を１つずつの表示%>
+      <!-- 良い感じに @target_trends のリストからトレンド名を１つずつの表示 -->
       <% @target_trends[0]['trends'].each do |trend| %>
         <div style='text-align:center;'> <%= trend['name'] %> </div>
       <% end %>
-
     <% end %>
   </div>
 
